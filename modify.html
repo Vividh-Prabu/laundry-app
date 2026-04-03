@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modify Laundry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page">
+  <div class="page-card">
+
+    <h2>Modify Laundry</h2>
+
+    <input id="token" placeholder="Enter Token"><br>
+
+    <select id="slot">
+      <option>Morning</option>
+      <option>Afternoon</option>
+      <option>Evening</option>
+    </select><br>
+
+    <!-- 🔥 NEW DATE SHIFT OPTION -->
+    <select id="dayChange">
+      <option value="0">Same Day</option>
+      <option value="-1">Previous Day</option>
+      <option value="1">Next Day</option>
+    </select><br>
+
+    <button onclick="modifyLaundry()">Update</button>
+
+    <p id="msg"></p>
+
+  </div>
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

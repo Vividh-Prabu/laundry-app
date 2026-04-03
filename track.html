@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Track Laundry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h2>🔍 Track Laundry</h2>
+
+    <p id="roomDisplay"></p>
+
+    <input id="token" placeholder="Enter Token">
+
+    <button onclick="trackLaundry()">Track</button>
+
+    <h3 id="result"></h3>
+
+  </div>
+</div>
+
+<script>
+  let room = localStorage.getItem("room");
+  document.getElementById("roomDisplay").innerText = "Room: " + room;
+
+  function trackLaundry() {
+    let token = document.getElementById("token").value;
+
+    if (!token) {
+      alert("Enter token");
+      return;
+    }
+
+    // Dummy response (you can connect Firebase later)
+    document.getElementById("result").innerText =
+      "🧺 Laundry is in process...";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dhobi Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dhobi-bg">
+
+<div class="page">
+  <div class="page-card">
+
+    <h1>🧺 Dhobi Panel</h1>
+    <p>Manage Laundry Operations</p>
+
+    <!-- 🔘 ACTION BUTTONS -->
+    <button onclick="go('today.html')">Today's Laundry</button><br>
+    <button onclick="go('collect.html')">Enter Collected</button><br>
+    <button onclick="go('finished.html')">Enter Finished</button><br>
+    <button onclick="go('reschedule.html')">Reschedule</button><br><br>
+
+    <!-- 📂 UPLOAD SECTION -->
+    <hr style="margin: 15px 0;">
+
+    <h3>📂 Upload Laundry Schedule</h3>
+
+    <input type="file" id="fileInput" accept=".xlsx, .xls"><br><br>
+
+    <button onclick="uploadExcel()">Upload Schedule</button>
+
+    <p id="uploadMsg" style="margin-top:10px;"></p>
+
+    <br>
+
+    <!-- 🔴 LOGOUT -->
+    <button onclick="logout()">Logout</button>
+
+  </div>
+</div>
+
+<!-- ✅ ONLY ONE XLSX SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<!-- 🔥 MAIN JS -->
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

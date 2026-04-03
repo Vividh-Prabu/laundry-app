@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Role</title>
+
+  <style>
+    /* 🌍 BODY WITH SOFT LAUNDRY BACKGROUND */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+
+      /* ✅ PEACH COLOR (your desired background) */
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+      position: relative;
+}
+
+    /* 🌫️ LIGHT OVERLAY (softer look) */
+    
+
+    /* 📦 CONTAINER (BIGGER) */
+    .container {
+      width: 360px; /* increased from 300px */
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1s ease;
+    }
+
+    /* 💎 GLASS CARD (BIGGER + SMOOTHER) */
+    .card {
+      padding: 30px; /* increased padding */
+      border-radius: 18px;
+
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(14px);
+
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+
+      text-align: center;
+
+      animation: floatCard 3s ease-in-out infinite alternate;
+    }
+
+    /* 📝 HEADINGS */
+    h2 {
+      margin-bottom: 20px;
+      color: #ffffff;
+      font-size: 22px;
+    }
+
+    /* 👥 ROLE CONTAINER */
+    .roles {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+
+    /* 🎯 ROLE CARDS (BIGGER) */
+    .role-card {
+      width: 110px; /* increased */
+      padding: 14px;
+      border-radius: 14px;
+
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(6px);
+
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #fff;
+
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* 🖼️ ICON (BIGGER) */
+    .role-card img {
+      width: 55px;
+      height: 55px;
+      transition: transform 0.3s ease;
+    }
+
+    /* 🔤 TEXT */
+    .role-card span {
+      display: block;
+      font-size: 14px;
+      margin-top: 8px;
+      color: #fff;
+    }
+
+    /* ✨ HOVER EFFECT */
+    .role-card:hover {
+      transform: translateY(-10px) scale(1.1);
+      background: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    .role-card:hover img {
+      transform: scale(1.25) rotate(5deg);
+    }
+
+    /* 🌊 FLOATING CARD */
+    @keyframes floatCard {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-14px);
+      }
+    }
+
+    /* 🌟 FADE IN */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 🔥 PAGE TRANSITION */
+    .page-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      z-index: 999;
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.6s ease;
+    }
+
+    .page-transition.active {
+      transform: scaleY(1);
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: 0.4s ease;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+    <h2>Select Role</h2>
+
+    <div class="roles">
+
+      <div class="role-card" onclick="selectRole('student')">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+        <span>Student</span>
+      </div>
+
+      <div class="role-card" onclick="selectRole('dhobi')">
+        <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+        <span>Dhobi</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="page-transition"></div>
+
+<script>
+function selectRole(role) {
+  const transition = document.querySelector(".page-transition");
+  const container = document.querySelector(".container");
+
+  localStorage.setItem("role", role);
+
+  container.classList.add("fade-out");
+
+  setTimeout(() => {
+    transition.classList.add("active");
+  }, 200);
+
+  setTimeout(() => {
+    window.location.href = "login.html";
+  }, 800);
+}
+</script>
+
+</body>
+</html>

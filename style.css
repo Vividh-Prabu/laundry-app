@@ -1,0 +1,187 @@
+/* 🌍 BODY */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 📦 CONTAINER */
+.container {
+  text-align: center;
+  width: 100%;
+}
+
+/* 💎 CARD */
+.card {
+  width: 380px;
+  padding: 30px;
+  margin: auto;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+
+  transition: 0.3s;
+  animation: fadeIn 0.6s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+}
+
+/* 📝 INPUTS */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+
+  border-radius: 10px;
+  border: none;
+  outline: none;
+
+  font-size: 14px;
+  box-sizing: border-box;
+
+  background: rgba(255,255,255,0.95);
+}
+
+/* 🔥 PASSWORD BOX (FIX ALIGNMENT ISSUE) */
+.password-box {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.password-box input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+/* 👁 EYE ICON */
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* 🔘 BUTTON (ONLY ONE DEFINITION NOW) */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* 🔴 BACK BUTTON (FIXED CLEAN VERSION) */
+.back-btn {
+  width: 80%;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #ff7e5f, #ff3d3d);
+}
+
+/* 🔴 LOGOUT */
+.logout {
+  width: 200px;
+  background: linear-gradient(135deg, #ff6a6a, #ff3d3d);
+}
+
+/* 🎯 OPTION */
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.25);
+  margin: 12px 0;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.option:hover {
+  background: rgba(255,255,255,0.45);
+  transform: scale(1.02);
+}
+
+.option.selected {
+  background: rgba(255,255,255,0.6);
+  border: 2px solid #ff9a9e;
+}
+
+/* 🔘 RADIO */
+input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid #ff9a9e;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="radio"]:checked::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+
+  background: #ff9a9e;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+/* 🚫 HIDDEN */
+.hidden {
+  display: none;
+}
+
+/* 📢 STATUS */
+.status {
+  font-weight: bold;
+  color: #444;
+  margin-top: 10px;
+}
+
+/* 🌟 ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

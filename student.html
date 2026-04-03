@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+
+      padding: 22px;
+      width: 340px;
+      border-radius: 15px;
+
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logout {
+      width: 200px;
+      background: linear-gradient(135deg, #ff6a6a, #ff3d3d);
+    }
+
+    .option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.2);
+      margin: 8px 0;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option:hover {
+      background: rgba(255,255,255,0.35);
+    }
+
+    .option-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .selected {
+      background: rgba(255,255,255,0.5);
+      border: 2px solid white;
+    }
+
+    .status {
+      font-weight: bold;
+      color: white;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎓 Student Dashboard</h1>
+
+<div class="container">
+
+  <div class="card">
+
+    <label style="color:white;">Hostel Block</label>
+    <select id="block">
+      <option value="">Select Block</option>
+      <option value="A">A Block</option>
+      <option value="D1">D1 Block</option>
+      <option value="D2">D2 Block</option>
+    </select>
+
+    <label style="color:white;">Room Number</label>
+    <input id="room" placeholder="Enter Room Number">
+
+    <!-- OPTIONS -->
+    <div class="option" onclick="selectOption(this, 'laundry')">
+      <div class="option-left">
+        <input type="radio" name="action" id="laundry">
+        <label>Book Laundry</label>
+      </div>
+      <span>🧺</span>
+    </div>
+
+    <div class="option" onclick="selectOption(this, 'modify')">
+      <div class="option-left">
+        <input type="radio" name="action" id="modify">
+        <label>Modify Laundry</label>
+      </div>
+      <span>🔁</span>
+    </div>
+
+    <div class="option" onclick="selectOption(this, 'track')">
+      <div class="option-left">
+        <input type="radio" name="action" id="track">
+        <label>Track Status</label>
+      </div>
+      <span>🔍</span>
+    </div>
+
+    <button onclick="handleAction()">Check</button>
+
+    <p id="msg" class="status"></p>
+
+  </div>
+
+  <button class="logout" onclick="logout()">Logout</button>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+<script>
+function selectOption(element, id) {
+
+  document.querySelectorAll(".option").forEach(opt => {
+    opt.classList.remove("selected");
+  });
+
+  element.classList.add("selected");
+
+  document.getElementById("laundry").checked = false;
+  document.getElementById("modify").checked = false;
+  document.getElementById("track").checked = false;
+
+  document.getElementById(id).checked = true;
+}
+
+async function handleAction() {
+
+  let block = document.getElementById("block").value;
+  let room = document.getElementById("room").value.trim();
+  let selected = document.querySelector('input[name="action"]:checked');
+
+  if (!block) return alert("Select block");
+  if (!room) return alert("Enter room number");
+  if (!selected) return alert("Select one option");
+
+  let action = selected.id;
+
+  // 🔁 SIMPLE REDIRECTS
+  if (action === "track") {
+    window.location.href = "track.html";
+    return;
+  }
+
+  if (action === "modify") {
+    window.location.href = "modify.html";
+    return;
+  }
+
+  // 🧺 LAUNDRY CHECK USING EXCEL DATA
+  if (action === "laundry") {
+
+    let scheduleData = JSON.parse(localStorage.getItem("scheduleData")) || [];
+
+    if (scheduleData.length === 0) {
+      alert("⚠️ No schedule uploaded yet (Ask Dhobi)");
+      return;
+    }
+
+    let floor = Math.floor(parseInt(room) / 100);
+    let today = new Date().toISOString().split("T")[0];
+
+    let match = scheduleData.find(item =>
+      item.block === block &&
+      item.floor === floor &&
+      item.date === today
+    );
+
+    if (match) {
+      window.location.href = "book_laundry.html";
+    } else {
+      document.getElementById("msg").innerText =
+        "❌ Not scheduled today for Floor " + floor;
+    }
+  }
+}
+
+function logout() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

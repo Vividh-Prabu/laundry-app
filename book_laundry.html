@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Laundry</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      padding: 340px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      width: 400px;
+      margin: auto;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🧺 Book Laundry</h1>
+
+<div class="card">
+
+  <select id="slot">
+    <option>Morning</option>
+    <option>Afternoon</option>
+    <option>Evening</option>
+  </select>
+
+  
+
+  <button onclick="bookLaundry()">Confirm Booking</button>
+
+  <h3 id="result"></h3>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
